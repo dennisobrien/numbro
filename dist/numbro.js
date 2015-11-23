@@ -139,7 +139,7 @@ var _ = require("underscore");
     ************************************/
 
     // determine what type of formatting we need to do
-    function formatNumbro(value, format, language, roundingFunction) {
+    function formatNumbro(value, format, roundingFunction) {
         var output;
         // TODO: do something with `language`
 
@@ -941,10 +941,12 @@ var _ = require("underscore");
     }
 
     function format(input, formatString, language, roundingFunction) {
+        if (_.isString(language) && language !== numbro.culture()) {
+            numbro.setCulture(language);
+        }
         return formatNumbro(
             Number(input),
             _.isString(formatString)        ? formatString        : defaultFormat,
-            _.isString(language)            ? languages[language] : languages[defaultLanguage],
             _.isUndefined(roundingFunction) ? Math.round          : roundingFunction);
     }
 
