@@ -870,51 +870,6 @@ var _ = require("underscore");
         return false;
     };
 
-    numbro.includeLocalesInNode = function(culturesPath, culture) {
-        if (!inNodejsRuntime()) {
-            return;
-        }
-
-        var path = require('path');
-
-        culture.forEach(function(langLocaleCode) {
-            var culture = require(path.join(__dirname, culturesPath, langLocaleCode));
-            numbro.culture(culture.langLocaleCode, culture);
-        });
-    };
-
-    /**
-     * * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
-     * `loadCulturesInNode` should be used instead.
-     */
-    numbro.loadLanguagesInNode = function(languagesPath) {
-        console.warn('`loadLanguagesInNode` is deprecated since version 1.6.0. Use `loadCulturesInNode` instead');
-
-        if (!inNodejsRuntime()) {
-            return;
-        }
-
-        var fs = require('fs');
-        var path = require('path');
-
-        var langFiles = fs.readdirSync(path.join(__dirname, languagesPath));
-
-        numbro.includeLocalesInNode(languagesPath, langFiles);
-    };
-
-    numbro.loadCulturesInNode = function(culturesPath) {
-        if (!inNodejsRuntime()) {
-            return;
-        }
-
-        var fs = require('fs');
-        var path = require('path');
-
-        var langFiles = fs.readdirSync(path.join(__dirname, culturesPath));
-
-        numbro.includeLocalesInNode(culturesPath, langFiles);
-    };
-
     /************************************
         Helpers
     ************************************/
