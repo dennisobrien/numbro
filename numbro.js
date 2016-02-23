@@ -889,12 +889,6 @@ var _ = require("underscore");
         }
     }
 
-    function inNodejsRuntime() {
-        return (typeof process !== 'undefined') &&
-            (process.browser === undefined) &&
-            (process.title === 'node' || process.title === 'grunt');
-    }
-
     function format(input, formatString, language, roundingFunction) {
         return formatNumbro(
             Number(input),
